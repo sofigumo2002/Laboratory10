@@ -4,7 +4,11 @@
  */
 package main;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,15 +19,21 @@ import javafx.stage.Stage;
  * @author Profesor Gilberth Chaves A <gchavesav@ucr.ac.cr>
  */
 public class mainFX extends Application {
-    
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
+   @Override
+    public void start(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
+            Scene scene = new Scene(root);
+            
+            primaryStage.setTitle("Laboratorio No.10 - 2022");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(true);
+            primaryStage.show();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(mainFX.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
     }
 
     /**
