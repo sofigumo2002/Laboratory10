@@ -46,6 +46,8 @@ public class FXMLPageTwoController implements Initializable {
     private TextField text1;
     private Line line1;
     private Line line2;
+    
+    private boolean levels = true;
 
     @FXML
     private Label labelRoot;
@@ -54,12 +56,35 @@ public class FXMLPageTwoController implements Initializable {
     
     @FXML
     private Button btnBalanced;
-    @FXML
     private Button btnHeight;
 
     AVL tree = new AVL();
 
     SinglyLinkedList list = new SinglyLinkedList();
+    @FXML
+    private Button btnLevels;
+    @FXML
+    private Label cero;
+    @FXML
+    private Label uno;
+    @FXML
+    private Label dos;
+    @FXML
+    private Label tres;
+    @FXML
+    private Label cuatro;
+    @FXML
+    private Label cinco;
+    @FXML
+    private Line line01;
+    @FXML
+    private Line lineTwo1;
+    @FXML
+    private Line lineThree1;
+    @FXML
+    private Line lineFour1;
+    @FXML
+    private Line lineFive;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -75,7 +100,7 @@ public class FXMLPageTwoController implements Initializable {
         fillArea();
         showTree();
         btnBalanced.setDisable(false);
-        
+        this.btnLevels.setDisable(false);
         this.btnHeight.setDisable(false);
         this.anchorPaneTree.getChildren().add(textArea);
     }
@@ -201,17 +226,7 @@ public class FXMLPageTwoController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
-    private void btnHeight(ActionEvent event) throws ListException, TreeException {
-        int element = (int) list.getNode(util.Utility.random(list.size() - 1)).data;
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Height");
-        alert.setHeaderText(null);
-        alert.setContentText(("El Height del valor: " + element + " es : " + String.valueOf(tree.height(element))));
-        alert.showAndWait();
-    }
-
+    
     private void fillTree(AVL tree) throws ListException {
         
         tree.add(77);
@@ -250,6 +265,48 @@ public class FXMLPageTwoController implements Initializable {
         String string = "Height: " + tree.height() + "\n";
         string += tree.toString();
         this.textArea.setText(string);
+    }
+
+    @FXML
+    private void btnLevels(ActionEvent event) {
+        
+        if (levels) {
+            this.anchorPaneTree.getChildren().add(line0);
+            this.anchorPaneTree.getChildren().add(lineTwo);
+            this.anchorPaneTree.getChildren().add(lineThree);
+            this.anchorPaneTree.getChildren().add(lineFour);
+            this.anchorPaneTree.getChildren().add(lineFive);
+            line0.setVisible(true);
+            lineTwo.setVisible(true);
+            lineThree.setVisible(true);
+            lineFour.setVisible(true);
+            lineFive.setVisible(true);
+            cero.setVisible(true);
+            uno.setVisible(true);
+            dos.setVisible(true);
+            tres.setVisible(true);
+            cuatro.setVisible(true);
+            cinco.setVisible(true);
+            levels = false;
+        } else {
+            this.anchorPaneTree.getChildren().remove(line0);
+            this.anchorPaneTree.getChildren().remove(lineTwo);
+            this.anchorPaneTree.getChildren().remove(lineThree);
+            this.anchorPaneTree.getChildren().remove(lineFour);
+            this.anchorPaneTree.getChildren().remove(lineFive);
+            line0.setVisible(false);
+            lineTwo.setVisible(false);
+            lineThree.setVisible(false);
+            lineFour.setVisible(false);
+            lineFive.setVisible(false);
+            cero.setVisible(false);
+            uno.setVisible(false);
+            dos.setVisible(false);
+            tres.setVisible(false);
+            cuatro.setVisible(false);
+            cinco.setVisible(false);
+            levels = true;
+        }
     }
 
 
